@@ -1,0 +1,17 @@
+//删除节点方法
+<table>
+	<tr>
+		<th>id</th>
+		<th>name</th>
+		<th>title</th>
+		<th>pid</th>
+	</tr>
+	<foreach name='node' item='v'>
+		<tr>
+			<td>{$v.id}</td>
+			<td>{$v.name}</td>
+			<td>{$v.title}</td>
+			<td>{$v.pid}</td>
+		</tr>
+	</foreach>
+</table>

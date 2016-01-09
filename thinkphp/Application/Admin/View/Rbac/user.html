@@ -1,0 +1,34 @@
+<table class="table">
+	<tr>
+		<th>Id</th>
+		<th>用户名称</th>
+		<th>上一次登录时间</th>
+		<th>上一次登陆ip</th>
+		<th>状态</th>
+		<th>用户所属组</th>
+		<th>操作</th>
+	</tr>
+	<foreach name='user' item='v'>
+		<tr>
+			<td>{$v.id}</td>
+			<td>{$v.username}</td>
+			<td>{$v.logintime|date='y-m-d H:i', ###}</td>
+			<td>{$v.loginip}</td>
+			<td>
+				<if condition='$v["lock"]'>锁定</if>
+			</td>
+			<td>
+				<if condition='$v["username"] eq C("RBAC_SUPERADMIN")'>
+					超级管理员
+				<else/>
+					<ul>
+						<foreach name='v.role' item='value'>
+							<li>{$value.name}({$value.remark})</li>
+						</foreach>
+					</ul>
+				</if>
+			</td>
+			<td>锁定</td>
+		</tr>
+	</foreach>
+</table>

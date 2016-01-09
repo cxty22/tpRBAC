@@ -1,0 +1,27 @@
+<h1>用户列表</h1>
+<table class="table">
+	<tr>
+		<th>ID</th>
+		<th>角色名称</th>
+		<th>角色描述</th>
+		<th>开启状态</th>
+		<th>操作</th>
+	</tr>
+	<foreach name='role' item='v'>
+		<tr>
+			<td>{$v.id}</td>
+			<td>{$v.name}</td>
+			<td>{$v.remark}</td>
+			<td>
+				<if condition='$v["status"]'>
+					开启
+				<else/>
+					关闭
+				</if>
+			</td>
+			<td>
+				<a href="{:U('Admin/Rbac/access', array('rid' => $v['id']))}" onclick="return false;">配置权限</a>
+			</td>
+		</tr>
+	</foreach>
+</table>

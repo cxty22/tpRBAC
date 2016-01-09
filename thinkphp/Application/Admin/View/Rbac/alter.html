@@ -1,0 +1,25 @@
+<h3>修改节点方法</h3>
+<style>
+.ret {
+    font-size: 20px;
+}
+</style>
+<a href="{:U('Admin/Rbac/Node')}" onclick="return false;" class="ret">返回上一级</a>
+<form action="{:U('Admin/Rbac/alterHandle')}">
+    <table class="table">
+        <tr>
+        	<td>{$level}:</td>
+        	<td><input type="text" value="{$node.name}" title="name"></td>
+        </tr>
+        <tr>
+        	<td>{$level}描述:</td>
+        	<td><input type="text" value="{$node.title}" name="title"></td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+        		<input type="hidden" value="{$node.id}" name="id">
+        		<input type="submit" value="保存修改" onclick="return false;" id="alter">
+        	</td>
+        </tr>
+    </table>
+</form>

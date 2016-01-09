@@ -1,0 +1,87 @@
+<h2>权限配置</h2>
+<h2>节点列表</h2>
+<form action="{:U('Admin/Rbac/setAccess')}">
+    <div id="nodelist">
+        <a href="{:U('Admin/Rbac/role')}" onclick="return false;" class="add-app">返回</a>
+        <foreach name="node" item="app">
+            <div class="app">
+                <p>
+                    <strong>{$app.title}</strong>
+                    <input type="checkbox" name="access[]" value="{$app.id}_1" data-level='1' <if condition='$app["access"]'>checked="checked"</if>>
+                </p>
+                <foreach name="app.child" item="action">
+                    <dl>
+                        <dt>
+                            <strong>{$action.title}</strong>
+                            <input type="checkbox" name="access[]" value="{$action.id}_2" data-level='2' <if condition='$action["access"]'>checked="checked"</if>>
+                        </dt>
+                        <foreach name="action.child" item="method">
+                            <dd>
+                                <span>{$method.title}</span>
+                                <input type="checkbox" name="access[]" value="{$method.id}_3" data-level='3' <if condition='$method["access"]'>checked="checked"</if>>
+                            </dd>
+                        </foreach>
+                    </dl>
+                </foreach>
+            </div>
+        </foreach>
+    </div>
+    <input type="hidden" value="{$rid}" name="rid">
+    <input type="submit" value="保存修改" onclick="return false;" id="access">
+</form>
+<style>
+#nodelist {
+    width: 94%;
+    height: auto;
+    overflow: hidden;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+}
+
+#nodelist .add-app {
+    display: block;
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background: #670768;
+    color: #fff;
+    border-radius: 4px;
+}
+
+#nodelist .app {
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #f6f6f6;
+    border-radius: 4px;
+}
+
+#nodelis .app p {
+    height: 30px;
+    line-height: 30px;
+}
+
+#wrap .app p strong {
+    font-size: 20px;
+    color: #06b998;
+}
+
+#nodelist .app dl {
+    margin: 10px 0;
+    border: 1px solid #dcdcdc;
+    height: auto;
+    overflow: hidden;
+}
+
+#nodelist .app dl dt {
+    display: 36px;
+    line-height: 36px;
+    background: #e6e6fe;
+}
+
+#nodelist .app dl dd {
+    padding: 10px;
+    float: left;
+}
+</style>
